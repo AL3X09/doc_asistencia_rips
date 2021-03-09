@@ -7,9 +7,9 @@ from .serializer import TipoVehiculoSerializer
 
 # Create your views here.
 @api_view(['GET', 'POST', 'DELETE'])
-def tema_list(request):
+def tipovehiculo_list(request):
 
     if request.method == 'GET':
-        tema_ = TemaModel.objects.all()
-        tema_serializer = TemaSerializer(tema, many=True)
-        return JsonResponse(tema_serializer.data, safe=False)
+        tipo_vehiculos = TipoVehiculoModel.objects.all()
+        tipo_vehiculos_serializer = TipoVehiculoSerializer(tipo_vehiculos, many=True)
+        return JsonResponse(tipo_vehiculos_serializer.data, safe=False)
