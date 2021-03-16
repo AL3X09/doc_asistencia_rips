@@ -8,7 +8,7 @@ from .serializer import UserSerializer
 
 # Create your views here.
 @api_view(['GET', 'POST', 'DELETE'])
-def list_usuarios(request):
+def Usuarios_view(request):
 
     if request.method == 'GET':
         usuarios = User.objects.all()

@@ -2,12 +2,12 @@ from django.shortcuts import render
 from django.http.response import JsonResponse
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
-from .models import TipoVehiculoModel
-from .serializer import TipoVehiculoSerializer
+from .models import TemaModel
+from .serializer import TemaSerializer
 
 # Create your views here.
 @api_view(['GET', 'POST', 'DELETE'])
-def tema_list(request):
+def Tema_view(request):
 
     if request.method == 'GET':
         tema_ = TemaModel.objects.all()

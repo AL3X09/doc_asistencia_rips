@@ -28,6 +28,9 @@ BASE_APPS = [
 
 LOCAL_APPS = [
     'apps.users',
+    'apps.tema',
+    'apps.tipo_asistencia',
+    'apps.form_asistencia',
 ]
 
 THIRD_APPS = [

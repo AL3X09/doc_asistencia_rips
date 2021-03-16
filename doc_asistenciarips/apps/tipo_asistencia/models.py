@@ -1,3 +1,5 @@
 from django.db import models
 
-# Create your models here.
+class TipoAsistenciaModel(models.Model):
+    nombre = models.CharField('Tipo Asistencia', max_length=150, blank=False, null=False, unique=True)
+    is_active = models.BooleanField(default=True)
