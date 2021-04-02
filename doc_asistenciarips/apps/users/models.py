@@ -1,16 +1,18 @@
 from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
 from simple_history.models import HistoricalRecords
-
-
+    
 class UserManager(BaseUserManager):
-    def _create_user(self, username, password, email, name, last_name, firm, direc, office, telephone, is_staff, is_superuser, **extra_fields):
+    def _create_user(self, username,  email, name, last_name, firm, direc, office, telephone, password, is_staff, is_superuser, **extra_fields):
         user = self.model(
             username = username,
             email = email,
             name = name,
             last_name = last_name,
-            firm = firma,
+            firm = firm,
+            direc = direc,
+            office = office,
+            telephone = telephone,
             is_staff = is_staff,
             is_superuser = is_superuser,
             **extra_fields
@@ -19,11 +21,11 @@ class UserManager(BaseUserManager):
         user.save(using=self.db)
         return user
 
-    def create_user(self, username, email, name,last_name, firm, direc, office, telephone, password=None, **extra_fields):
-        return self._create_user(username, password, email, name, last_name, "",False, False, **extra_fields)
+    def create_user(self, username, email, name, last_name, firm, direc, office, telephone, password=None, **extra_fields):
+        return self._create_user(username, email, name, last_name, firm, direc, office, telephone, password, False, False, **extra_fields)
 
-    def create_superuser(self, username, email, name,last_name, firm, direc, office, telephone, password=None, **extra_fields):
-        return self._create_user(username, password, email, name, last_name, "", True, True, **extra_fields)
+    def create_superuser(self, username, email, name, last_name, firm, direc, office, telephone, password=None,  **extra_fields):
+        return self._create_user(username, email, name, last_name, firm, direc, office, telephone, password, True, True, **extra_fields)
 
 class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField('usuario',max_length = 255, unique = True)
@@ -45,8 +47,8 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     #def natural_key(self):        return(self.username)
     USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['email','name','last_name']
-    
+    REQUIRED_FIELDS = ['email','name','last_name','firm', 'direc', 'office', 'telephone']
 
+    #contructor
     def __str__(self):
        return f'{self.name} {self.last_name}'
