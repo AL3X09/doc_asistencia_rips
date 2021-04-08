@@ -12,4 +12,5 @@ def Tipo_Asistencia_view(request):
     if request.method == 'GET':
         tipo_asistencia = TipoAsistenciaModel.objects.all()
         tipo_asistencia_serializer = TipoAsistenciaSerializer(tipo_asistencia, many=True)
-        return JsonResponse(tipo_asistencia_serializer.data, safe=False)
+        return Response(tema_serializer.data)
+            ##return JsonResponse(tipo_asistencia_serializer.data, safe=False)
