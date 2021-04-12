@@ -4,5 +4,5 @@ from .models import TemaModel
 class TemaSerializer(serializers.ModelSerializer):
     class Meta:
         model = TemaModel
-        fields = '__all__'
+        fields = "__all__"
         #fields = ['id','nombre',]
