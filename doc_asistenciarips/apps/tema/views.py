@@ -49,12 +49,12 @@ def Tema_detail(request, pk):
         
     except TemaModel.DoesNotExist:
     #except ObjectDoesNotExist:
-        return HttpResponse({'message': 'El valor no existe'},status=status.HTTP_400_BAD_REQUEST)
+        return HttpResponse({'El valor no existe'},status=status.HTTP_400_BAD_REQUEST)
 
     if request.method == 'GET':
         
         tema_serializer = TemaSerializer(tema)
-        print(tema_serializer)
+        #print(tema_serializer)
         #if (tema_serializer).Meta.fields. .is_valid(is_active=True)
         return Response(tema_serializer.data, status=status.HTTP_200_OK)
 
@@ -77,5 +77,5 @@ def Tema_detail(request, pk):
     elif request.method=='DELETE':
               #count = tema.objects.all().delete()
         tema.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response('El valor fue borrado', status=status.HTTP_204_NO_CONTENT)
         #({'message': '{} Tabla se borro correctamente'.format(data[0])}, status=status.HTTP_204_NO_CONTENT)

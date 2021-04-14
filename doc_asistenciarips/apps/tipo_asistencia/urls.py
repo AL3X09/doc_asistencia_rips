@@ -1,6 +1,7 @@
 from django.urls import path
-from .views import Tipo_Asistencia_view
+from .views import *
 
 urlpatterns = [
-    path('tipo_asistencia/', Tipo_Asistencia_view, name = 'lista_tipo_asistencia')
+    path('api/', Tipo_Asistencia_view, name = 'lista_tipo_asistencia'),
+    path('api/<int:pk>/', Tipo_Asistencia_detail, name = 'detalle_tipo_asistencia')
 ]
