@@ -3,6 +3,7 @@ from django.shortcuts import render
 from rest_framework.views import Response
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
+
 from .models import User
 from .serializer import UserSerializer
 
@@ -57,3 +58,14 @@ def Usuario__detail(request, pk):
 
     elif request.method=='DELETE':
         raise NotImplementedError ("El Borrado de usuarios no es soportado")
+
+#Agrego las clases para logueo y logaut
+    class Login(object):
+        def __init__(self, *args):
+            super(Login, self).__init__(*args))
+            
+    
+    class Logaut(object):
+        def __init__(self, *args):
+            super(Logaut, self).__init__(*args))
+            
