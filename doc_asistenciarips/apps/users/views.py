@@ -71,47 +71,52 @@ def Usuario__detail(request, pk):
         raise NotImplementedError("El Borrado de usuarios no es soportado")
 
 # Agrego las clases para logueo y logaut
+
+
 class Login_view(ObtainAuthToken):
 
     def post(self, request, *args, **kwargs):
-        login_serializer = self.serializer_class(
-            data=request.data, context={'request': request})
-        if login_serializer.is_valid():
-            user = login_serializer.validated_data['user']
-            if user.is_active:
-                token, created = Token.objects.get_or_create(user=user)
-                user_serializer = UserTokenSerializer(user)
-                if created:
-                    return Response({
-                        'token': token.key,
-                        'user': user_serializer.data,
-                        'message': 'Inicio de sesión exitoso.'
-                    }, status=status.HTTP_201_CREATED)
-                else:
-                    token.delete()
-                    return Response({
-                        'error': 'Ya se ha iniciado sesión con este usuario'
-                    }, status=status.HTTP_409_CONFLICT)
+        try:
+            login_serializer = self.serializer_class(
+                data=request.data, context={'request': request})
+            if login_serializer.is_valid():
+                user = login_serializer.validated_data['user']
+                if user.is_active:
+                    token, created = Token.objects.get_or_create(user=user)
+                    user_serializer = UserTokenSerializer(user)
+                    if created:
+                        return Response({
+                            'token': token.key,
+                            'user': user_serializer.data,
+                            'message': 'Inicio de sesión exitoso.'
+                        }, status=status.HTTP_201_CREATED)
+                    else:
+                        token.delete()
+                        return Response({
+                            'error': 'Ya se ha iniciado sesión con este usuario'
+                        }, status=status.HTTP_409_CONFLICT)
 
+                else:
+                    return Response({'error': 'Este usuario esta inactivo'}, status=status.HTTP_401_UNAUTHORIZED)
             else:
-                return Response({'error': 'Este usuario esta inactivo'}, status=status.HTTP_401_UNAUTHORIZED)
-        else:
-            return Response({'error': 'Nombre o contraseña incorrectos'}, status=status.HTTP_400_BAD_REQUEST)
-        return Response({'mensaje': 'hola'}, status=status.HTTP_200_OK) 
+                return Response({'error': 'Nombre o contraseña incorrectos'}, status=status.HTTP_400_BAD_REQUEST)
+        except:
+            return Response(login_serializer.errors, status=status.HTTP_409_CONFLICT)
 
 
 class Logout_view(APIView):
-    def get(self,request,*args,**kwargs):
+    def get(self, request, *args, **kwargs):
         try:
             token = request.GET.get('token')
-            token = Token.objects.filter(key = token).first()
+            token = Token.objects.filter(key=token).first()
 
             if token:
                 user = token.user
-                all_sessions = Session.objects.filter(expire_date__gte = datetime.now())
-                #print(all_sessions)
+                all_sessions = Session.objects.filter(
+                    expire_date__gte=datetime.now())
+                # print(all_sessions)
                 if all_sessions.exists():
-                    #print(session)
+                    # print(session)
                     for session in all_sessions:
                         session_data = session.get_decoded()
                         if user.id == int(session_data.get('_auth_user_id')):
