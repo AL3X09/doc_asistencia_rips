@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import { Form, Button, Container } from 'react-bootstrap';
 import axios from "axios";
 
@@ -13,12 +14,13 @@ export default class Login extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   } onChange = (e) => this.setState({ [e.target.name]: e.target.value }); 
   handleSubmit(event) {
-    axios.post('http://localhost:8000/account/api/register',{
-        username: this.state.email,
+    axios.post('usuarios/login',{
+        username: this.state.username,
         password: this.state.password,
         
     }).then(function (res){
-        console.log(res)
+        console.log(res);
+        localStorage.setItem('usuario', JSON.stringify(res))
         //localStorage.setItem('token', res.data.access);
         //localStorage.setItem('user', res.config.data);
     }).catch(function (err){

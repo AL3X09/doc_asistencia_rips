@@ -71,8 +71,6 @@ def Usuario__detail(request, pk):
         raise NotImplementedError("El Borrado de usuarios no es soportado")
 
 # Agrego las clases para logueo y logaut
-
-
 class Login_view(ObtainAuthToken):
 
     def post(self, request, *args, **kwargs):
