@@ -54,8 +54,7 @@ export default class Login extends Component {
 
             //setLoading(false);
             //setMessage(resMessage);
-        }
-        );
+        });
 
     };
 

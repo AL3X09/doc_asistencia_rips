@@ -132,3 +132,17 @@ class Logout_view(APIView):
 
         except:
             return Response({'error': 'No se encontrado token en la petición'}, status=status.HTTP_409_CONFLICT)
+
+
+class Register_view(APIView):
+    def post(self, request, *args, **kwargs):
+        try:
+            usuarios_serializer = UserSerializer(data=request.data)
+            if usuarios_serializer.is_valid():
+                usuarios_serializer.save()
+                return Response({'message': 'Usuario creado de manera correcta.'}, status=status.HTTP_201_CREATED)
+
+            return Response({'error': 'Se presentaron execepciones al registrar','errores': usuarios_serializer.errors}, status = status.HTTP_400_BAD_REQUEST)
+
+        except:
+            return Response({'error': 'Se encontro errores en la petición'}, status=status.HTTP_409_CONFLICT)

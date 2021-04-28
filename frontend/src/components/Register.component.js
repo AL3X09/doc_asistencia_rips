@@ -8,169 +8,281 @@ import CheckButton from "react-validation/build/button";
 
 import AuthService from "../services/auth.service";
 
-const resMessage ='';
-
-const required = (value) => {
-    if (!value) {
-        return (
-            <div className="alert alert-danger" role="alert">
-                This field is required!
-            </div>
-        );
-    }
-};
-
-const vusername = value => {
-    if (value.length < 3 ) {
-      return (
-        
-        resMessage='The username must be between 3 and 20 characters.'
-        
-      );
-    }
-  };
-
-
-
 export default class Register extends Component {
 
     constructor(props) {
         super(props);
+        this.onChangename = this.onChangename.bind(this);
+        this.onChangelastname = this.onChangelastname.bind(this);
+        this.onChangeemail = this.onChangeemail.bind(this);
+        this.onChangedirec = this.onChangedirec.bind(this);
+        this.onChangeoffice = this.onChangeoffice.bind(this);
+        this.onChangetelephone = this.onChangetelephone.bind(this);
+        this.onChangeusername = this.onChangeusername.bind(this);
+        this.onChangePassword = this.onChangePassword.bind(this);
+        this.onChangeconfirmpassword = this.onChangeconfirmpassword.bind(this);
 
-
-        this.onChangename = this.onChangeUsername.bind(this);
-        this.onChangelastname = this.onChangePassword.bind(this);
-        this.onChangeemail = this.onChangePassword.bind(this);
-        this.onChangedirec = this.onChangePassword.bind(this);
-        this.onChangeoffice = this.onChangePassword.bind(this);
-        this.onChangetelephone = this.onChangePassword.bind(this);
-        this.onChangeusername = this.onChangePassword.bind(this);
-        this.onChangepassword = this.onChangePassword.bind(this);
-        this.onChangeconfirmpassword = this.onChangePassword.bind(this);
-
-        this.onChange = this.onChange.bind(this);
+        //this.onChange = this.onChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
 
         this.state = {
-            name:'',
-            last_name:'',
-            email:'',
-            direc:'',
-            office:'',
-            telephone:'',
+            name: '',
+            last_name: '',
+            email: '',
+            direc: '',
+            office: '',
+            telephone: '',
             username: '',
             password: '',
             successful: false,
             message: ""
         };
 
-    } onChange = (e) => this.setState({ [e.target.name]: e.target.value });
+    }
+    //onChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
     onChangename(e) {
-        console.log(e.target.value);
-        this.setState({
-          username: e.target.value
-        });
-      }
+        //console.log(e.target.value)
+        if (e.target.value.length < 3) {
+            this.setState({
+                message: "Diligencie el campo nombre",
+                successful: false,
+            });
+        } else {
+            this.setState({
+                message: "",
+                successful: true,
+                name: e.target.value
+            });
+        }
+
+    }
 
     onChangelastname(e) {
-        this.setState({
-            password: e.target.value
-        });
+        if (e.target.value.length < 3) {
+            this.setState({
+                message: "Diligencie el campo apellidos",
+                successful: false
+              });
+        } else {
+            
+            this.setState({
+                message: "",
+                successful: true,
+                last_name: e.target.value
+            });
+        }
+
+        /*this.setState({
+            last_name: e.target.value
+        });*/
+
     }
-    onChangePassword(e) {
-        this.setState({
-            password: e.target.value
-        });
+    onChangeemail(e) {
+        //const regexInsensitive = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        //console.log(regexInsensitive.test(e.target.value.toLowerCase()));
+        if (e.target.value.length < 3) {
+            this.setState({
+                message: "Diligencie el campo correo",
+                successful: false,
+              });
+        } else {
+            
+            this.setState({
+                message: "",
+                successful: true,
+                email: e.target.value.toLowerCase()
+            });
+        }
+        
     }
-    onChangePassword(e) {
-        this.setState({
-            password: e.target.value
-        });
+    onChangedirec(e) {
+        if (e.target.value.length < 3) {
+            this.setState({
+                message: "Diligencie la dirección",
+                successful: false,
+              });
+        } else {
+            
+            this.setState({
+                message: "",
+                successful: true,
+                direc: e.target.value
+            });
+        }
     }
-    onChangePassword(e) {
-        this.setState({
-            password: e.target.value
-        });
+    onChangeoffice(e) {
+        if (e.target.value.length < 3) {
+            this.setState({
+                message: "Diligencie la dirección",
+                successful: false,
+              });
+        } else {
+            
+            this.setState({
+                message: "",
+                successful: true,
+                office: e.target.value
+            });
+        }
     }
-    onChangeUsername(e) {
-        this.setState({
-            username: e.target.value
-        });
+    onChangetelephone(e) {
+        if (e.target.value.length < 3) {
+            this.setState({
+                message: "Diligencie la extencón o telefono",
+                successful: false,
+              });
+        } else {
+            
+            this.setState({
+                message: "",
+                successful: true,
+                telephone: e.target.value
+            });
+        }
+    }
+
+    onChangeusername(e) {
+        if (e.target.value.length < 4) {
+            this.setState({
+                message: "Diligencie el nombre de usuario",
+                successful: false,
+              });
+        } else {
+            
+            this.setState({
+                message: "",
+                successful: true,
+                username: e.target.value
+            });
+        }
     }
 
     onChangePassword(e) {
-        this.setState({
-            password: e.target.value
-        });
+        //const valor = '';
+        var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*\-\+])(?=.{8,})");
+        //console.log(strongRegex.test(e.target.value));
+        if (strongRegex.test(e.target.value)==false) {
+            this.setState({
+                message: "La contraseña debe tener minimo 8 caracteres, una letra mayuscula, una minuscula y un caracter especial.",
+                successful: false,
+              });
+        } else {
+            
+            this.setState({
+                message: "",
+                successful: true,
+                password: e.target.value,
+                
+            });
+        }
+    }
+
+    onChangeconfirmpassword(e) {
+        if(e.target.value != this.state.password){
+
+            this.setState({
+                message: 'La contraseña y su confirmación no coinciden',
+                successful: false
+            });
+
+        }
+            this.setState({
+                passwordConfirm: e.target.value
+            });
+        
     }
 
 
     handleSubmit(event) {
         event.preventDefault();
-        this.setState({
-            successful: false,
-            message: resMessage
-          });
-
+        
+            AuthService.register(
+                this.state.name,
+                this.state.last_name,
+                this.state.email,
+                this.state.direc,
+                this.state.office,
+                this.state.telephone,
+                this.state.username,
+                this.state.password,
+            ).then(response => {
+                    //console.log(response);
+                    this.setState({
+                        message: response.message,
+                        successful: true
+                    });
+                },error => {
+                    //console.log(error);
+                    
+                    const resMessage = (error.error &&  JSON.stringify(error.errores))
+                    //console.log(resMessage);
+                        this.setState({
+                            message:resMessage,
+                            successful: false
+                        });
+                        //alert(JSON.stringify(error.errores));
+                    
+                });
+        
     };
     render() {
         return (
-            <form style={{ marginTop: '100%' }}>
+            <form style={{ marginTop: '100%' }} onSubmit={this.handleSubmit}>
                 <h3>Registro</h3>
 
                 <div className="form-group">
                     <label>Nombres</label>
                     <input type="text" className="form-control" placeholder="Nombres" name="name" required
-                            onChange={this.onChangename}/>
+                        onChange={this.onChangename} />
                 </div>
 
                 <div className="form-group">
                     <label>Apellidos</label>
                     <input type="text" className="form-control" placeholder="Apeliidos" name="lastname" required
-                       onChange={this.onChangelastname}/>
+                        onChange={this.onChangelastname} />
                 </div>
 
                 <div className="form-group">
                     <label>Correo</label>
                     <input type="email" className="form-control" placeholder="Correo" name="email" required
-                       onChange={this.onChangename}/>
+                        onChange={this.onChangeemail} />
                 </div>
 
                 <div className="form-group">
                     <label>Dirección</label>
                     <input type="text" className="form-control" placeholder="Dirección de trabajo" name="direc" required
-                       onChange={this.onChangename}/>
+                        onChange={this.onChangedirec} />
                 </div>
 
                 <div className="form-group">
                     <label>Dependencia</label>
                     <input type="text" className="form-control" placeholder="Dependencia" name="office" required
-                       onChange={this.onChangename}/>
+                        onChange={this.onChangeoffice} />
                 </div>
 
                 <div className="form-group">
                     <label>Extención</label>
                     <input type="number" className="form-control" placeholder="Extensión" name="telephone" required
-                       onChange={this.onChangename}/>
+                        onChange={this.onChangetelephone} />
                 </div>
 
                 <div className="form-group">
                     <label>Usuario</label>
-                    <input type="password" className="form-control" placeholder="Usuario de acceso" name="username" required
-                       onChange={this.onChangename}/>
+                    <input type="text" className="form-control" placeholder="Usuario de acceso" name="username" required
+                        onChange={this.onChangeusername} />
                 </div>
 
                 <div className="form-group">
                     <label>Contraseña</label>
                     <input type="password" className="form-control" placeholder="Contraseña" name="password" required
-                       onChange={this.onChangename}/>
+                        onChange={this.onChangePassword} />
                 </div>
 
                 <div className="form-group">
                     <label>Confirme Contraseña</label>
                     <input type="password" className="form-control" placeholder="Confirme contraseña" name="passwordConfirm" required
-                       onChange={this.onChangename}/>
+                        onChange={this.onChangeconfirmpassword} />
                 </div>
 
                 {this.state.message && (
@@ -188,7 +300,7 @@ export default class Register extends Component {
                     </div>
                 )}
 
-                <button type="submit" className="btn btn-dark btn-lg btn-block" onClick={this.handleSubmit}>Registrar</button>
+                <button type="submit" className="btn btn-dark btn-lg btn-block">Registrar</button>
                 <p className="forgot-password text-right">
                     Ya estoy resgistrado <a href="/">Ingresar</a>
                 </p>
