@@ -1,6 +1,7 @@
 //https://bezkoder.com/react-jwt-auth/
 import React, { Component } from "react";
 
+
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
@@ -22,7 +23,6 @@ export default class Register extends Component {
         this.onChangePassword = this.onChangePassword.bind(this);
         this.onChangeconfirmpassword = this.onChangeconfirmpassword.bind(this);
 
-        //this.onChange = this.onChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
 
         this.state = {
@@ -39,7 +39,6 @@ export default class Register extends Component {
         };
 
     }
-    //onChange = (e) => this.setState({ [e.target.name]: e.target.value });
 
     onChangename(e) {
         //console.log(e.target.value)
@@ -63,9 +62,9 @@ export default class Register extends Component {
             this.setState({
                 message: "Diligencie el campo apellidos",
                 successful: false
-              });
+            });
         } else {
-            
+
             this.setState({
                 message: "",
                 successful: true,
@@ -85,25 +84,25 @@ export default class Register extends Component {
             this.setState({
                 message: "Diligencie el campo correo",
                 successful: false,
-              });
+            });
         } else {
-            
+
             this.setState({
                 message: "",
                 successful: true,
                 email: e.target.value.toLowerCase()
             });
         }
-        
+
     }
     onChangedirec(e) {
         if (e.target.value.length < 3) {
             this.setState({
                 message: "Diligencie la dirección",
                 successful: false,
-              });
+            });
         } else {
-            
+
             this.setState({
                 message: "",
                 successful: true,
@@ -116,9 +115,9 @@ export default class Register extends Component {
             this.setState({
                 message: "Diligencie la dirección",
                 successful: false,
-              });
+            });
         } else {
-            
+
             this.setState({
                 message: "",
                 successful: true,
@@ -131,9 +130,9 @@ export default class Register extends Component {
             this.setState({
                 message: "Diligencie la extencón o telefono",
                 successful: false,
-              });
+            });
         } else {
-            
+
             this.setState({
                 message: "",
                 successful: true,
@@ -147,9 +146,9 @@ export default class Register extends Component {
             this.setState({
                 message: "Diligencie el nombre de usuario",
                 successful: false,
-              });
+            });
         } else {
-            
+
             this.setState({
                 message: "",
                 successful: true,
@@ -162,69 +161,74 @@ export default class Register extends Component {
         //const valor = '';
         var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*\-\+])(?=.{8,})");
         //console.log(strongRegex.test(e.target.value));
-        if (strongRegex.test(e.target.value)==false) {
+        if (strongRegex.test(e.target.value) == false) {
             this.setState({
                 message: "La contraseña debe tener minimo 8 caracteres, una letra mayuscula, una minuscula y un caracter especial.",
                 successful: false,
-              });
+            });
         } else {
-            
+
             this.setState({
                 message: "",
                 successful: true,
                 password: e.target.value,
-                
+
             });
         }
     }
 
     onChangeconfirmpassword(e) {
-        if(e.target.value != this.state.password){
-
-            this.setState({
-                message: 'La contraseña y su confirmación no coinciden',
-                successful: false
-            });
-
-        }
-            this.setState({
-                passwordConfirm: e.target.value
-            });
         
+        if (e.target.value.length >= 8 ) {
+            //console.log(e.target.value);
+            if (this.state.password != e.target.value) {
+
+                this.setState({
+                    message: 'La contraseña y su confirmación no coinciden',
+                    successful: false
+                });
+
+            }else if(this.state.password == e.target.value){
+                this.setState({
+                    passwordConfirm: e.target.value
+                });
+            }
+            
+        }
+
     }
 
 
     handleSubmit(event) {
         event.preventDefault();
-        
-            AuthService.register(
-                this.state.name,
-                this.state.last_name,
-                this.state.email,
-                this.state.direc,
-                this.state.office,
-                this.state.telephone,
-                this.state.username,
-                this.state.password,
-            ).then(response => {
-                    //console.log(response);
-                    this.setState({
-                        message: response.message,
-                        successful: true
-                    });
-                },error => {
-                    //console.log(error);
-                    
-                    const resMessage = (error.error &&  JSON.stringify(error.errores))
-                    //console.log(resMessage);
-                        this.setState({
-                            message:resMessage,
-                            successful: false
-                        });
-                        //alert(JSON.stringify(error.errores));
-                    
-                });
-        
+
+        AuthService.register(
+            this.state.name,
+            this.state.last_name,
+            this.state.email,
+            this.state.direc,
+            this.state.office,
+            this.state.telephone,
+            this.state.username,
+            this.state.password,
+        ).then(response => {
+            //console.log(response);
+            this.setState({
+                message: response.message,
+                successful: true
+            });
+        }, error => {
+
+            const resMessage = (error.error + ' Descripción:' + JSON.stringify(error.errores))
+            //console.log(resMessage);
+            this.setState({
+                message: resMessage,
+                successful: false
+            });
+            //alert(JSON.stringify(error.errores));
+
+        });
+
     };
     render() {
         return (

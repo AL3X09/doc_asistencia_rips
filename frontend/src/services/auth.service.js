@@ -46,9 +46,7 @@ const login = (username, password) => {
       return response.data;
     }).catch(function (error) {
       // handle error
-      //console.log(error.response.data);
-      alert(error.response.data.error);
-
+      return Promise.reject(error.response.data)
     });
 };
 
