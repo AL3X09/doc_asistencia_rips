@@ -70,15 +70,30 @@ def Usuario__detail(request, pk):
     elif request.method == 'DELETE':
         raise NotImplementedError("El Borrado de usuarios no es soportado")
 
-# Agrego las clases para logueo y logaut
+# Agrego las clases para register, logueo y logaut
+class Register_view(APIView):
+    def post(self, request, *args, **kwargs):
+        try:
+            register_serializer = UserSerializer(data=request.data)
+                #self.serializer_class(data=request.data, context={'request': request})
+            
+            if register_serializer.is_valid():
+                register_serializer.save()
+                return Response({'message': 'Usuario creado de manera correcta.'}, status=status.HTTP_201_CREATED)
+
+            return Response({'error': 'Se presentaron execepciones al registrar','errores': register_serializer.errors}, status = status.HTTP_400_BAD_REQUEST)
+
+        except Exception as e:
+            #print("Unexpected error:", inst)
+            return Response({'error': 'Se encontro errores en la petición: '}, status=status.HTTP_409_CONFLICT)
+
 
 
 class Login_view(ObtainAuthToken):
 
     def post(self, request, *args, **kwargs):
         try:
-            login_serializer = self.serializer_class(
-                data=request.data, context={'request': request})
+            login_serializer = self.serializer_class(data=request.data, context={'request': request})
             if login_serializer.is_valid():
                 user = login_serializer.validated_data['user']
                 if user.is_active:
@@ -134,31 +149,3 @@ class Logout_view(APIView):
             return Response({'error': 'No se encontrado token en la petición'}, status=status.HTTP_409_CONFLICT)
 
 
-class Register_view(APIView):
-    def post(self, request, *args, **kwargs):
-        try:
-            register_serializer = self.serializer_class(
-                data=request.data, context={'request': request})
-            
-            if register_serializer.is_valid():
-                register_serializer.save()
-                return Response({'message': 'Usuario creado de manera correcta.'}, status=status.HTTP_201_CREATED)
-
-            return Response({'error': 'Se presentaron execepciones al registrar','errores': register_serializer.errors}, status = status.HTTP_400_BAD_REQUEST)
-
-        except Exception as inst:
-            print("Unexpected error:", inst)
-            return Response({'error': 'Se encontro errores en la petición: '}, status=status.HTTP_409_CONFLICT)
-
-
-class rrrgister_view2(APIView):
-    def post(self, request, *args, **kwargs):
-        try:
-            usuarios_serializer = UserSerializer(data=request.data)
-            if usuarios_serializer.is_valid():
-                usuarios_serializer.save()
-                return Response(usuarios_serializer.data)
-            return Response({'error': 'Se presentaron execepciones al registrar','errores': usuarios_serializer.errors}, status = status.HTTP_400_BAD_REQUEST)
-
-        except:
-            return Response({'error': 'Se encontro errores en la petición: '}, status=status.HTTP_409_CONFLICT)

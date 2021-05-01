@@ -178,22 +178,20 @@ export default class Register extends Component {
     }
 
     onChangeconfirmpassword(e) {
-        
-        if (e.target.value.length >= 8 ) {
-            //console.log(e.target.value);
-            if (this.state.password != e.target.value) {
 
-                this.setState({
-                    message: 'La contraseña y su confirmación no coinciden',
-                    successful: false
-                });
+        if (e.target.value.length < 8) {
 
-            }else if(this.state.password == e.target.value){
-                this.setState({
-                    passwordConfirm: e.target.value
-                });
-            }
-            
+            this.setState({
+                message: 'Diligencie el campo confirmación de contraseña',
+                successful: false
+            });
+
+        } else {
+            this.setState({
+                message: '',
+                successful: true,
+                passwordConfirm: e.target.value
+            });
         }
 
     }
@@ -202,32 +200,41 @@ export default class Register extends Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        AuthService.register(
-            this.state.name,
-            this.state.last_name,
-            this.state.email,
-            this.state.direc,
-            this.state.office,
-            this.state.telephone,
-            this.state.username,
-            this.state.password,
-        ).then(response => {
-            //console.log(response);
-            this.setState({
-                message: response.message,
-                successful: true
-            });
-        }, error => {
+        if (this.state.passwordConfirm != this.state.password) {
 
-            const resMessage = (error.error + ' Descripción:' + JSON.stringify(error.errores))
-            //console.log(resMessage);
             this.setState({
-                message: resMessage,
+                message: 'La contraseña y su confirmación no coinciden',
                 successful: false
             });
-            //alert(JSON.stringify(error.errores));
+        } else {
 
-        });
+            AuthService.register(
+                this.state.name,
+                this.state.last_name,
+                this.state.email,
+                this.state.direc,
+                this.state.office,
+                this.state.telephone,
+                this.state.username,
+                this.state.password,
+            ).then(response => {
+                //console.log(response);
+                this.setState({
+                    message: response.message,
+                    successful: true
+                });
+            }, error => {
+
+                const resMessage = (error.error + ' Descripción:' + JSON.stringify(error.errores))
+                //console.log(resMessage);
+                this.setState({
+                    message: resMessage,
+                    successful: false
+                });
+                //alert(JSON.stringify(error.errores));
+
+            });
+        }
 
     };
     render() {
@@ -254,8 +261,8 @@ export default class Register extends Component {
                 </div>
 
                 <div className="form-group">
-                    <label>Dirección</label>
-                    <input type="text" className="form-control" placeholder="Dirección de trabajo" name="direc" required
+                    <label>Entidad</label>
+                    <input type="text" className="form-control" placeholder="Entidad" name="direc" required
                         onChange={this.onChangedirec} />
                 </div>
 

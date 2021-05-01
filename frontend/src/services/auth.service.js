@@ -56,6 +56,7 @@ const logout = () => {
 
 const getCurrentUser = () => {
   return JSON.parse(localStorage.getItem("user"));
+  console.log(localStorage.getItem("user"));
 };
 
 export default {

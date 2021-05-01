@@ -8,19 +8,19 @@ export default class Profile extends Component {
 
         this.state = {
             currentUser: AuthService.getCurrentUser(),
-
         };
     }
 
     render() {
         //console.log('currentUser');
-        //console.log(currentUser);
+        
         const { currentUser } = this.state;
 
         return (
+            
             <div className="container">
                 <header className="jumbotron">
-                <h3><strong>{currentUser.username}</strong> Perfil</h3>
+                <h3><strong>{currentUser.user.username}</strong> Perfil</h3>
                 </header>
                 <p>
                     <strong>Token:</strong>{" "}
@@ -29,11 +29,23 @@ export default class Profile extends Component {
                 </p>
                 <p>
                     <strong>Email:</strong>{" "}
-                    {currentUser.user.email}
+                    {currentUser.email}
                 </p>
                 <p>
                     <strong>Id:</strong>{" "}
-                    {currentUser.id}
+                    {currentUser.user.id}
+                </p>
+                <p>
+                    <strong>name:</strong>{" "}
+                    {currentUser.user.name}
+                </p>
+                <p>
+                    <strong>last_name:</strong>{" "}
+                    {currentUser.user.last_name}
+                </p>
+                <p>
+                    <strong>Email:</strong>{" "}
+                    {currentUser.user.email}
                 </p>
                 <strong>Authorities:</strong>
                 <ul>
