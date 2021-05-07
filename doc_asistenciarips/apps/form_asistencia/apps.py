@@ -2,4 +2,5 @@ from django.apps import AppConfig
 
 
 class FormAsistenciaConfig(AppConfig):
-    name = 'form_asistencia'
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'apps.form_asistencia'
