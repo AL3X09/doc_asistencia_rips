@@ -14,10 +14,12 @@ html, .formlogin, #root, .outer {
 }
 
 .outer {
-  display: flex;
+  display: contents;
   justify-content: center;
   flex-direction: column;
   text-align: left;
+  position: inherit;
+  top: 50px;
 }
 
 .inner {
@@ -68,4 +70,12 @@ html, .formlogin, #root, .outer {
     margin: 0 auto;
     max-width: 320px;
   }
+}
+
+.outer2  {
+  position: absolute;
+  /*top: 50%;*/
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
 }

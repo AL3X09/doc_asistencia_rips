@@ -16,9 +16,9 @@ export default class Profile extends Component {
         //console.log('currentUser');
         
         const { currentUser } = this.state;
-        <Header />
+        //<Header />
         return (
-            
+            <Header />,
             <div className="container">
                 <header className="jumbotron">
                 <h3><strong>{currentUser.user.username}</strong> Perfil</h3>

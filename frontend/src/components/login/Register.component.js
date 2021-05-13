@@ -1,13 +1,14 @@
 //https://bezkoder.com/react-jwt-auth/
 import React, { Component } from "react";
 
-
-import Form from "react-validation/build/form";
+/*import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
-//import { isEmail } from "validator";
-import './login.css';
+import { isEmail } from "validator";*/
+
 import AuthService from "../../services/auth.service";
+
+import './login.css';
 
 export default class Register extends Component {
 
@@ -239,83 +240,89 @@ export default class Register extends Component {
     };
     render() {
         return (
-            <form style={{ marginTop: '100%' }} onSubmit={this.handleSubmit}>
-                <h3>Registro</h3>
+            <div className="formlogin">
+                <div className="outer">
+                    <div className="inner">
+                        <form style={{ marginTop: '' }} onSubmit={this.handleSubmit}>
+                            <h3>Registro</h3>
 
-                <div className="form-group">
-                    <label>Nombres</label>
-                    <input type="text" className="form-control" placeholder="Nombres" name="name" required
-                        onChange={this.onChangename} />
-                </div>
+                            <div className="form-group">
+                                <label>Nombres</label>
+                                <input type="text" className="form-control" placeholder="Nombres" name="name" required
+                                    onChange={this.onChangename} />
+                            </div>
 
-                <div className="form-group">
-                    <label>Apellidos</label>
-                    <input type="text" className="form-control" placeholder="Apeliidos" name="lastname" required
-                        onChange={this.onChangelastname} />
-                </div>
+                            <div className="form-group">
+                                <label>Apellidos</label>
+                                <input type="text" className="form-control" placeholder="Apeliidos" name="lastname" required
+                                    onChange={this.onChangelastname} />
+                            </div>
 
-                <div className="form-group">
-                    <label>Correo</label>
-                    <input type="email" className="form-control" placeholder="Correo" name="email" required
-                        onChange={this.onChangeemail} />
-                </div>
+                            <div className="form-group">
+                                <label>Correo</label>
+                                <input type="email" className="form-control" placeholder="Correo" name="email" required
+                                    onChange={this.onChangeemail} />
+                            </div>
 
-                <div className="form-group">
-                    <label>Entidad</label>
-                    <input type="text" className="form-control" placeholder="Entidad" name="direc" required
-                        onChange={this.onChangedirec} />
-                </div>
+                            <div className="form-group">
+                                <label>Entidad</label>
+                                <input type="text" className="form-control" placeholder="Entidad" name="direc" required
+                                    onChange={this.onChangedirec} />
+                            </div>
 
-                <div className="form-group">
-                    <label>Dependencia</label>
-                    <input type="text" className="form-control" placeholder="Dependencia" name="office" required
-                        onChange={this.onChangeoffice} />
-                </div>
+                            <div className="form-group">
+                                <label>Dependencia</label>
+                                <input type="text" className="form-control" placeholder="Dependencia" name="office" required
+                                    onChange={this.onChangeoffice} />
+                            </div>
 
-                <div className="form-group">
-                    <label>Extención</label>
-                    <input type="number" className="form-control" placeholder="Extensión" name="telephone" required
-                        onChange={this.onChangetelephone} />
-                </div>
+                            <div className="form-group">
+                                <label>Extención</label>
+                                <input type="number" className="form-control" placeholder="Extensión" name="telephone" required
+                                    onChange={this.onChangetelephone} />
+                            </div>
 
-                <div className="form-group">
-                    <label>Usuario</label>
-                    <input type="text" className="form-control" placeholder="Usuario de acceso" name="username" required
-                        onChange={this.onChangeusername} />
-                </div>
+                            <div className="form-group">
+                                <label>Usuario</label>
+                                <input type="text" className="form-control" placeholder="Usuario de acceso" name="username" required
+                                    onChange={this.onChangeusername} />
+                            </div>
 
-                <div className="form-group">
-                    <label>Contraseña</label>
-                    <input type="password" className="form-control" placeholder="Contraseña" name="password" required
-                        onChange={this.onChangePassword} />
-                </div>
+                            <div className="form-group">
+                                <label>Contraseña</label>
+                                <input type="password" className="form-control" placeholder="Contraseña" name="password" required
+                                    onChange={this.onChangePassword} />
+                            </div>
 
-                <div className="form-group">
-                    <label>Confirme Contraseña</label>
-                    <input type="password" className="form-control" placeholder="Confirme contraseña" name="passwordConfirm" required
-                        onChange={this.onChangeconfirmpassword} />
-                </div>
+                            <div className="form-group">
+                                <label>Confirme Contraseña</label>
+                                <input type="password" className="form-control" placeholder="Confirme contraseña" name="passwordConfirm" required
+                                    onChange={this.onChangeconfirmpassword} />
+                            </div>
 
-                {this.state.message && (
-                    <div className="form-group">
-                        <div
-                            className={
-                                this.state.successful
-                                    ? "alert alert-success"
-                                    : "alert alert-danger"
-                            }
-                            role="alert"
-                        >
-                            {this.state.message}
-                        </div>
+                            {this.state.message && (
+                                <div className="form-group">
+                                    <div
+                                        className={
+                                            this.state.successful
+                                                ? "alert alert-success"
+                                                : "alert alert-danger"
+                                        }
+                                        role="alert"
+                                    >
+                                        {this.state.message}
+                                    </div>
+                                </div>
+                            )}
+
+                            <button type="submit" className="btn btn-dark btn-lg btn-block">Registrar</button>
+                            <p className="forgot-password text-right">
+                                Ya estoy resgistrado <a href="/">Ingresar</a>
+                            </p>
+                        </form>
                     </div>
-                )}
-
-                <button type="submit" className="btn btn-dark btn-lg btn-block">Registrar</button>
-                <p className="forgot-password text-right">
-                    Ya estoy resgistrado <a href="/">Ingresar</a>
-                </p>
-            </form>
+                </div>
+            </div>
         );
     }
 }

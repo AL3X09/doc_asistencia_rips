@@ -1,10 +1,10 @@
 import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
-import Profile from "./components/profile/Profile.component";
+
 import Login from "./components/login/Login.component";
 import Register from "./components/login/Register.component";
-
+import Profile from "./components/profile/Profile.component";
 
 const Router = () => (
     <BrowserRouter>

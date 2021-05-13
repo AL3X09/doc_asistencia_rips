@@ -96,9 +96,8 @@ export default class Login extends Component {
                             </div>
 
                             <button type="submit" className="btn btn-dark btn-lg btn-block" onClick={this.handleSubmit}>Ingresar</button>
-                            
                             <p className="forgot-password text-left">
-                                 <a href="Registrar">No estoy Registrado</a>
+                                <a href="/Registrar">No estoy Registrado</a>
                             </p>
                             <p className="forgot-password text-right">
                                 Olvido su <a href="#">contraseña?</a>
