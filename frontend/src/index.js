@@ -1,17 +1,23 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
-import { Provider as AlertProvider } from 'react-alert';
+import {render} from "react-dom";
 //import AlertTemplate from 'react-alert-template-basic';
 import "./index.css";
-import App from "./App";
-import * as serviceWorker from "./serviceWorker";
+//import Header from './components/header/Header.component';
+import Router from './Router';
 
-ReactDOM.render(
-    <BrowserRouter>
-        <App />
-    </BrowserRouter>,
-    document.getElementById("root")
-);
 
-serviceWorker.unregister();
+//import * as serviceWorker from "./serviceWorker";
+
+const Root = () => {
+    return (
+        <div>
+            <div className="contenedor">
+                <Router />
+            </div>
+        </div>
+        )
+}
+
+render(<Root/>, document.querySelector('#root'));
+
+

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import AuthService from "../../services/auth.service";
 
+import Header from '../header/Header.component';
 
 export default class Profile extends Component {
     constructor(props) {
@@ -15,7 +16,7 @@ export default class Profile extends Component {
         //console.log('currentUser');
         
         const { currentUser } = this.state;
-
+        <Header />
         return (
             
             <div className="container">
