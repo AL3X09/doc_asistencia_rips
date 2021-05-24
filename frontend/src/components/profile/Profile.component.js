@@ -19,8 +19,8 @@ class Profile extends Component {
         const { currentUser } = this.state;
         //const { header } = <Header />;
         return (
-            <React.Fragment>
-                <Header />
+            
+                
                 <div className="">
                     <header className="">
                         <h3><strong>{currentUser.user.username}</strong> Perfil</h3>
@@ -56,7 +56,7 @@ class Profile extends Component {
                             currentUser.roles.map((role, index) => <li key={index}>{role}</li>)}
                     </ul>
                 </div>
-            </React.Fragment>
+            
         );
     }
 }
