@@ -14,23 +14,16 @@ class App extends Component {
   componentDidMount() {
     this.onRouteChanged();
   }
-  render () {
-    let navbarComponent = !this.state.isFullPageLayout ? <Header/> : '';
+  render() {
+    let navbarComponent = !this.state.isFullPageLayout ? <Header /> : '';
     /*let sidebarComponent = !this.state.isFullPageLayout ? <Sidebar/> : '';
     let SettingsPanelComponent = !this.state.isFullPageLayout ? <SettingsPanel/> : '';
     let footerComponent = !this.state.isFullPageLayout ? <Footer/> : '';*/
     return (
       <div className="container-scroller">
-        { navbarComponent }
-        <div className="container-fluid page-body-wrapper">
-          
-          <div className="main-panel">
-            <div className="content-wrapper">
-              <AppRoutes/>
-              
-            </div>
-            
-          </div>
+        { navbarComponent}
+        <div className="container-fluid">
+          <AppRoutes />
         </div>
       </div>
     );
@@ -46,7 +39,7 @@ class App extends Component {
     console.log("ROUTE CHANGED");
     //const { i18n } = this.props;
     const body = document.querySelector('body');
-    if(this.props.location.pathname === '/layout/RtlLayout') {
+    if (this.props.location.pathname === '/layout/RtlLayout') {
       body.classList.add('rtl');
       //i18n.changeLanguage('ar');
     }
@@ -55,19 +48,20 @@ class App extends Component {
       //i18n.changeLanguage('en');
     }
     window.scrollTo(0, 0);
-    const fullPageLayoutRoutes = ['./components/login/Login.component', './components/login/Register.component', '/user-pages/lockscreen', '/error-pages/error-404', '/error-pages/error-500', '/general-pages/landing-page'];
-    for ( let i = 0; i < fullPageLayoutRoutes.length; i++ ) {
+    const fullPageLayoutRoutes = ['/', './components/login/Login.component', '/Ingresar', '/Registrar', '/user-pages/lockscreen', '/error-pages/error-404', '/error-pages/error-500', '/general-pages/landing-page'];
+    for (let i = 0; i < fullPageLayoutRoutes.length; i++) {
+      //console.log(this.props.location.pathname);
       if (this.props.location.pathname === fullPageLayoutRoutes[i]) {
         this.setState({
           isFullPageLayout: true
         })
-        document.querySelector('.page-body-wrapper').classList.add('full-page-wrapper');
+        document.querySelector('.container-fluid').classList.add('full-page-wrapper');
         break;
       } else {
         this.setState({
           isFullPageLayout: false
         })
-        document.querySelector('.page-body-wrapper').classList.remove('full-page-wrapper');
+        document.querySelector('.container-fluid').classList.remove('full-page-wrapper');
       }
     }
   }

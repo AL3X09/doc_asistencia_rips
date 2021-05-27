@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { render } from 'react-dom'
 
-import { Card, Button,Form } from 'react-bootstrap';
+import { Card, Button,Form, div } from 'react-bootstrap';
 
-import Header from '../header/Header.component';
 
 class Formasistencia extends Component {
 
@@ -12,10 +11,19 @@ class Formasistencia extends Component {
     }
 
     render() {
-        //let navbarComponent = !this.state.isFullPageLayout ? <Header/> : '';
+
         return (
-            <Header/>,
+            <div>
+               <h1>Formulario de Asistencias</h1> 
+            </div>
+            <div>
+            {
             <Form>
+                <Form.Group controlId="formBasicEmail">
+                    <Form.Label>Fecha</Form.Label>
+                    <Form.Control type="text" id="fecha" name="fecha" />
+                    
+                </Form.Group>
                 <Form.Group controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control type="email" placeholder="Enter email" />
@@ -35,6 +43,8 @@ class Formasistencia extends Component {
                     Submit
                 </Button>
             </Form>
+            }
+         </div>
         );
     }
 }
