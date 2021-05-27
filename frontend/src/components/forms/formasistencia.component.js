@@ -1,50 +1,92 @@
 import React, { Component } from "react";
 import { render } from 'react-dom'
 
-import { Card, Button,Form, div } from 'react-bootstrap';
+import { Card, Button, Form, div, Row, Col } from 'react-bootstrap';
 
 
 class Formasistencia extends Component {
 
     constructor(props) {
         super(props);
+
+        var today = new Date(),
+            date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate()
+
+        this.state = {
+            currentDate: date
+        }
     }
 
     render() {
 
         return (
-            <div>
-               <h1>Formulario de Asistencias</h1> 
-            </div>
-            <div>
-            {
+
             <Form>
-                <Form.Group controlId="formBasicEmail">
-                    <Form.Label>Fecha</Form.Label>
-                    <Form.Control type="text" id="fecha" name="fecha" />
-                    
+                <div>
+                    <h1>Formulario de Asistencias</h1>
+                </div>
+                <Form.Group as={Row} controlId="ControlInput1">
+                    <Form.Label column sm="2">
+                        Usuario
+                    </Form.Label>
+                    <Col sm="10">
+                        <Form.Control plaintext readOnly defaultValue="email@example.com" />
+                    </Col>
+                    <Form.Label column sm="2">
+                        Oficina
+                    </Form.Label>
+                    <Col sm="10">
+                        <Form.Control plaintext readOnly defaultValue="email@example.com" />
+                    </Col>
+                    <Form.Label column sm="2">
+                        Oficina
+                    </Form.Label>
+                    <Col sm="10">
+                        <Form.Control plaintext readOnly defaultValue="email@example.com" />
+                    </Col>
                 </Form.Group>
-                <Form.Group controlId="formBasicEmail">
-                    <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" />
+                <hr/>
+                <Form.Group controlId="Fecha">
+                    <Form.Label>Fecha</Form.Label>
+                    <Form.Control type="text" id="fecha" name="fecha" defaultValue={this.state.currentDate} readOnly />
+                </Form.Group>
+                <Form.Group controlId="RecibeAsistencia">
+                    <Form.Label>NOMBRE DE LA PERSONA, DEPENDENCIA O ENTIDAD QUE RECIBE ASISTENCIA </Form.Label>
+                    <Form.Control as="select" id="recibeasistencia" name="recibeasistencia" />
+                </Form.Group>
+                <Form.Group controlId="DatContacto">
+                    <Form.Label>DATOS DE CONTACTO </Form.Label>
+                    <Form.Control type="text" id="datcontacto" name="datcontacto" />
+                </Form.Group>
+                <Form.Group controlId="Tema">
+                    <Form.Label>TEMA </Form.Label>
+                    <Form.Control type="text" id="tema" name="tema" />
+                </Form.Group>
+                <Form.Group controlId="TipoAsistencia">
+                    <Form.Label>TIPO DE ASISTENCIA </Form.Label>
+                    <Form.Control type="tipoasistencia" placeholder="tipoasistencia" />
                     <Form.Text className="text-muted">
-                        We'll never share your email with anyone else.
+                        Seleccione un valor del listado.
                     </Form.Text>
                 </Form.Group>
-
-                <Form.Group controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" />
+                <Form.Group controlId="Acciones">
+                    <Form.Label>ACCIONES </Form.Label>
+                    <Form.Control type="text" id="acciones" name="acciones" />
                 </Form.Group>
-                <Form.Group controlId="formBasicCheckbox">
-                    <Form.Check type="checkbox" label="Check me out" />
+                <Form.Group controlId="CompromAdquiere">
+                    <Form.Label>COMPROMISOS  ADQUIRIDOS </Form.Label>
+                    <Form.Control type="text" id="compromadquiere" name="compromadquiere" />
+                </Form.Group>
+                <Form.Group controlId="Firma">
+                    <Form.Label>FIRMA </Form.Label>
+                    <Form.Control type="text" id="firma" name="firma" />
                 </Form.Group>
                 <Button variant="primary" type="submit">
-                    Submit
+                    Enviar
                 </Button>
+
             </Form>
-            }
-         </div>
+
         );
     }
 }
