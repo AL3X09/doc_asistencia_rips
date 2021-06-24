@@ -7,6 +7,7 @@ const Register = lazy(() => import ("./components/login/Register.component"));
 const Profile = lazy(() => import ("./components/profile/Profile.component"));
 const Home = lazy(() => import ("./components/dashboard/Dashboard.component"));
 const Asistencia = lazy(() => import ("./components/forms/formasistencia.component"));
+const Tema = lazy(() => import ("./components/forms/tema.component"));
 
 //const Dashboard = lazy(() => import('./dashboard/Dashboard'));
 
@@ -39,6 +40,7 @@ class AppRoutes extends Component {
           <Route path="/Perfil" component={Profile} />
           <Route path="/Home" component={Home} />
           <Route path="/Asistencia" component={Asistencia} />
+          <Route path="/Tema" component={Tema} />
 
           <Redirect to="/Home" />
         </Switch>

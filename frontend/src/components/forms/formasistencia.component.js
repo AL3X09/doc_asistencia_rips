@@ -17,6 +17,10 @@ class Formasistencia extends Component {
         }
     }
 
+    Cargaselect(){
+        
+    }
+
     render() {
 
         return (
@@ -25,23 +29,23 @@ class Formasistencia extends Component {
                 <div>
                     <h1>Formulario de Asistencias</h1>
                 </div>
-                <Form.Group as={Row} controlId="ControlInput1">
+                <Form.Group as={Row}>
                     <Form.Label column sm="2">
                         Usuario
                     </Form.Label>
-                    <Col sm="10">
+                    <Col sm="2">
                         <Form.Control plaintext readOnly defaultValue="email@example.com" />
                     </Col>
                     <Form.Label column sm="2">
                         Oficina
                     </Form.Label>
-                    <Col sm="10">
+                    <Col sm="2">
                         <Form.Control plaintext readOnly defaultValue="email@example.com" />
                     </Col>
                     <Form.Label column sm="2">
-                        Oficina
+                        Extención
                     </Form.Label>
-                    <Col sm="10">
+                    <Col sm="2">
                         <Form.Control plaintext readOnly defaultValue="email@example.com" />
                     </Col>
                 </Form.Group>
@@ -52,7 +56,7 @@ class Formasistencia extends Component {
                 </Form.Group>
                 <Form.Group controlId="RecibeAsistencia">
                     <Form.Label>NOMBRE DE LA PERSONA, DEPENDENCIA O ENTIDAD QUE RECIBE ASISTENCIA </Form.Label>
-                    <Form.Control as="select" id="recibeasistencia" name="recibeasistencia" />
+                    <Form.Control type="text" id="recibeasistencia" name="recibeasistencia" />
                 </Form.Group>
                 <Form.Group controlId="DatContacto">
                     <Form.Label>DATOS DE CONTACTO </Form.Label>
@@ -60,7 +64,7 @@ class Formasistencia extends Component {
                 </Form.Group>
                 <Form.Group controlId="Tema">
                     <Form.Label>TEMA </Form.Label>
-                    <Form.Control type="text" id="tema" name="tema" />
+                    <Form.Control as="select" id="tema" name="tema" />
                 </Form.Group>
                 <Form.Group controlId="TipoAsistencia">
                     <Form.Label>TIPO DE ASISTENCIA </Form.Label>
@@ -75,7 +79,7 @@ class Formasistencia extends Component {
                 </Form.Group>
                 <Form.Group controlId="CompromAdquiere">
                     <Form.Label>COMPROMISOS  ADQUIRIDOS </Form.Label>
-                    <Form.Control type="text" id="compromadquiere" name="compromadquiere" />
+                    <Form.Control as="textarea" id="compromadquiere" name="compromadquiere" />
                 </Form.Group>
                 <Form.Group controlId="Firma">
                     <Form.Label>FIRMA </Form.Label>
