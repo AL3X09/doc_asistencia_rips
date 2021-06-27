@@ -18,7 +18,7 @@ def Tema_view(request):
         if request.method == 'GET':
             tema = TemaModel.objects.all()
             tema_serializer = TemaSerializer(tema, many=True)
-            return Response(tema_serializer.data, status=status.HTTP_200_OK)
+            return JsonResponse(tema_serializer.data, safe=False, status=status.HTTP_200_OK)
 
         elif request.method == 'POST':
             #print('hola')

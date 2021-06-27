@@ -4,7 +4,13 @@ import Temaservice from "../../services/tema.service";
 import { Card, Button, Form, div, Row, Col, Table, } from 'react-bootstrap';
 
 
-var datos;
+const datos = [];
+
+const data = [
+    { name: "Video1", text: "video 1 text" },
+    { name: "Video2", text: "video 2 text" },
+    { name: "Video3", text: "video 3 text" },
+];
 
 class Formasistencia extends Component {
 
@@ -34,9 +40,16 @@ class Formasistencia extends Component {
 
     Cargatabla() {
         Temaservice.load_datos_t().then(response => {
-            
-            datos.push(JSON.stringify(response));
-            console.log(datos);
+
+            //return (
+            response.map((k) => {
+
+                datos.push(k);
+                //return <tr key={k.id}><td>{k.nombre}</td></tr>;
+            })
+            //)
+            //console.log(data);
+            //console.log(datos);
         }, error => {
             const resMessage = (error.error + ' Descripción:' + JSON.stringify(error.errores))
             //console.log(resMessage);
@@ -72,8 +85,11 @@ class Formasistencia extends Component {
     render() {
 
         return (
+            
             <>
+            
                 <Form onSubmit={this.handleSubmit}>
+                {this.Cargatabla()}
                     <div>
                         <h1>Temas</h1>
                     </div>
@@ -81,35 +97,33 @@ class Formasistencia extends Component {
                     <Form.Group as={Row}>
                         <Form.Label column sm="2">
                             Nombre
-                    </Form.Label>
+                        </Form.Label>
                         <Col sm="6">
                             <Form.Control type="text" name="nombre" onChange={this.updateInput} />
                         </Col>
                     </Form.Group>
                     <Button variant="primary" type="submit">
                         Guardar
-                </Button>
+                    </Button>
                 </Form>
 
                 <div>
-                {this.Cargatabla()}
+                    
                     <Table striped bordered hover>
                         <thead>
                             <tr>
                                 <th>#</th>
                                 <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Username</th>
                             </tr>
                         </thead>
                         <tbody>
-                        {
-                        datos.map((item) => (
-                            <tr key={item.id}>
-                                <td>{item.nombre}</td>
-                            </tr>
-                        ))
-                    }
+                            {datos.map(el => (
+                                <tr>
+                                    <td>{console.log(el)}</td>
+                                    <td>{el.nombre}</td>
+                                </tr>
+                            ))}
+
                         </tbody>
                     </Table>
                 </div>

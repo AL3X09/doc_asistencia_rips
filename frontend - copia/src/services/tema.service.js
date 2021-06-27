@@ -6,6 +6,7 @@ const load_datos_t = () => {
         { 
           headers: authHeader() 
         }).then((response) => {
+          //return JSON.stringify(response.data);
           return response.data;
         }).catch(function (error) {
           // handle error
