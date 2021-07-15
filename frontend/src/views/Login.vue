@@ -5,6 +5,7 @@
 
       <!-- Icon -->
       <div class="fadeIn first">
+        <h1>Ingreso</h1>
         <img src="../assets/logo.png" id="icon" alt="User Icon" />
       </div>
 
@@ -19,31 +20,25 @@
           v-model="username"
         />
         <input
-          type="text"
+          type="password"
           id="password"
           class="fadeIn third"
-          name="login"
+          name="password"
           placeholder="Contraseña"
           v-model="password"
         />
         <input type="submit" class="fadeIn fourth" value="Ingresar" />
       </form>
       <div>
-        <b-alert v-model="showDismissibleAlert" variant="danger" class="closee" dismissible>
-      Dismissible Alert!
+        <b-alert v-model="showDismissibleAlert" variant="danger" class="close" dismissible>
+      {{error_msg}}
     </b-alert>
-      <b-alert
-        variant="danger"
-        dismissible
-        fade
-        :show="showDismissibleAlert"
-        @dismissed="showDismissibleAlert = false"
-      >
-        {{error_msg}}
-      </b-alert>
+      
       </div>
       <!-- Remind Passowrd -->
       <div id="formFooter">
+        <a class="underlineHover" v-bind:href="'Registro'">Registrarse</a>
+        <br/>
         <a class="underlineHover" href="#">Olvido su contraseña?</a>
       </div>
 
@@ -81,20 +76,10 @@ export default {
         },
         (error) => {
           this.showDismissibleAlert= true;
-          //this.error = true;
-
           this.error_msg = JSON.stringify(error.error);
-          //setLoading(false);
-          //setMessage(resMessage);
-          console.log(JSON.stringify(error.error));
         }
       );
-      /*axios.post('autb', json)
-      .then(data =>{
-        //si correcto crear variable en localstorage
-        
-        console.log(data);
-      })*/
+      
     },
   },
 };
@@ -227,7 +212,8 @@ input[type="reset"]:active {
   transform: scale(0.95);
 }
 
-input[type="text"] {
+input[type="text"],
+input[type="password"] {
   background-color: #f6f6f6;
   border: none;
   color: #0d0d0d;
@@ -248,12 +234,14 @@ input[type="text"] {
   border-radius: 5px 5px 5px 5px;
 }
 
-input[type="text"]:focus {
+input[type="text"]:focus,
+input[type="password"]:focus {
   background-color: #fff;
   border-bottom: 2px solid #5fbae9;
 }
 
-input[type="text"]:placeholder {
+input[type="text"]:placeholder,
+input[type="password"]:placeholder {
   color: #cccccc;
 }
 

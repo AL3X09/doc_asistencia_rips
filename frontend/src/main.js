@@ -4,6 +4,7 @@ import router from './route'
 import { BootstrapVue, IconsPlugin , ButtonPlugin , AlertPlugin  } from 'bootstrap-vue'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import Vuelidate from 'vuelidate'
 
 Vue.config.productionTip = false
 
@@ -13,6 +14,7 @@ Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.use(AlertPlugin)
 Vue.use(ButtonPlugin )
+Vue.use(Vuelidate)
 Vue.use(VueAxios, axios)
 
 // Import Bootstrap an BootstrapVue CSS files (order is important)
