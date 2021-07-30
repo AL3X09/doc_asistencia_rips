@@ -5,9 +5,8 @@ const load_datos_t = () => {
         return axios.get("temas/api",
         { 
           headers: authHeader() 
-        }).then((response) => {
-          //return JSON.stringify(response.data);
-          return response.data;
+        }).then(response => {
+          return JSON.stringify(response.data);          
         }).catch(function (error) {
           // handle error
           return Promise.reject(error.response.data)
