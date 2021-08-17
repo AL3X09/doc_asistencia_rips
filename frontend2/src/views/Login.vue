@@ -37,10 +37,7 @@
       </div>
       <!-- Remind Passowrd -->
       <div id="formFooter">
-        <a class="underlineHover" v-bind:href="'/Registro'">Registrarse</a>
-        
-        <br/>
-        <router-link to="Registro">Registrarse</router-link>
+        <a class="underlineHover" v-bind:href="'Registro'">Registrarse</a>
         <br/>
         <a class="underlineHover" href="#">Olvido su contraseña?</a>
       </div>

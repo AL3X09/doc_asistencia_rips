@@ -14,20 +14,20 @@
         <input
           type="text"
           id="nombres"
-          class="form-control"
+          class="fadeIn second"
           name="nombres"
           placeholder="Nombres"
-          v-model="v$.nombres.$model"
+          v-model="$v.nombres.$model"
           :class="{
-            'is-invalid': v$.nombres.$error
+            'is-invalid': $v.nombres.$error,
           }"
         />
-        <div class="invalid-feedback" v-if="v$.nombres.required">
+        <div class="invalid-feedback" v-if="!$v.nombres.required">
           Los nombres son obligatorios
         </div>
-        <div class="invalid-feedback" v-if="!v$.nombres.minLength">
+        <div class="invalid-feedback" v-if="!$v.nombres.minLength">
           Los nombres deben tener minimo
-          {{ v$.nombres.minLengthValue.$params.min }} letras.
+          {{ $v.nombres.$params.minLength.min }} letras.
         </div>
         <input
           type="text"
@@ -35,17 +35,17 @@
           class="fadeIn third"
           name="apellidos"
           placeholder="Apellidos"
-          v-model="v$.apellidos.$model"
+          v-model="$v.apellidos.$model"
           :class="{
-            'is-invalid': v$.apellidos.$error,
+            'is-invalid': $v.apellidos.$error,
           }"
         />
-        <div class="invalid-feedback" v-if="!v$.apellidos.required">
+        <div class="invalid-feedback" v-if="!$v.apellidos.required">
           Los apellidos son obligatorios
         </div>
-        <div class="invalid-feedback" v-if="!v$.apellidos.minLength">
+        <div class="invalid-feedback" v-if="!$v.apellidos.minLength">
           Los apellidos deben tener minimo
-          {{ v$.nombres.$params.minLength.min }} letras.
+          {{ $v.nombres.$params.minLength.min }} letras.
         </div>
 
         <input
@@ -54,15 +54,15 @@
           class="fadeIn third"
           name="correo"
           placeholder="Correo"
-          v-model="v$.correo.$model"
+          v-model="$v.correo.$model"
           :class="{
-            'is-invalid': v$.correo.$error,
+            'is-invalid': $v.correo.$error,
           }"
         />
-         <div class="invalid-feedback" v-if="!v$.correo.required">
+         <div class="invalid-feedback" v-if="!$v.correo.required">
           El correo es obligatorio
         </div>
-        <div class="invalid-feedback" v-if="!v$.correo.email">
+        <div class="invalid-feedback" v-if="!$v.correo.email">
           El correo deben ser una dirección de correo electronico correcto.
         </div>
 
@@ -72,16 +72,16 @@
           class="fadeIn cinco"
           name="entidad"
           placeholder="Entidad"
-          v-model="v$.entidad.$model"
+          v-model="$v.entidad.$model"
           :class="{
-            'is-invalid': v$.entidad.$error
+            'is-invalid': $v.entidad.$error
           }"
         />
-        <div class="invalid-feedback" v-if="!v$.entidad.required">
+        <div class="invalid-feedback" v-if="!$v.entidad.required">
           La entidad es obligatoria
         </div>
-        <div class="invalid-feedback" v-if="!v$.entidad.minLength">
-          La apellidos deben tener mínimo {{ v$.entidad.$entidad.minLength.min }} letras.
+        <div class="invalid-feedback" v-if="!$v.entidad.minLength">
+          La apellidos deben tener mínimo {{ $v.entidad.$entidad.minLength.min }} letras.
         </div>
         <input
           type="text"
@@ -89,16 +89,16 @@
           class="fadeIn seis"
           name="dependencia"
           placeholder="Dependencia"
-          v-model="v$.dependencia.$model"
+          v-model="$v.dependencia.$model"
           :class="{
-            'is-invalid': v$.dependencia.$error
+            'is-invalid': $v.dependencia.$error
           }"
         />
-        <div class="invalid-feedback" v-if="!v$.dependencia.required">
+        <div class="invalid-feedback" v-if="!$v.dependencia.required">
           La dependencia es obligatoria
         </div>
-        <div class="invalid-feedback" v-if="!v$.dependencia.minLength">
-          La dependencia debe tener mínimo {{ v$.dependencia.$params.minLength.min }} letras.
+        <div class="invalid-feedback" v-if="!$v.dependencia.minLength">
+          La dependencia debe tener mínimo {{ $v.dependencia.$params.minLength.min }} letras.
         </div>
 
         <input
@@ -107,16 +107,16 @@
           class="fadeIn siete"
           name="extension"
           placeholder="Extension"
-          v-model="v$.extension.$model"
+          v-model="$v.extension.$model"
           :class="{
-            'is-invalid': v$.extension.$error
+            'is-invalid': $v.extension.$error
           }"
         />
-        <div class="invalid-feedback" v-if="!v$.extension.required">
+        <div class="invalid-feedback" v-if="!$v.extension.required">
           La extension es obligatoria
         </div>
-        <div class="invalid-feedback" v-if="!v$.extension.minLength">
-          La extension debe tener mínimo {{ v$.extension.$params.minLength.min }} letras.
+        <div class="invalid-feedback" v-if="!$v.extension.minLength">
+          La extension debe tener mínimo {{ $v.extension.$params.minLength.min }} letras.
         </div>
 
         <input
@@ -125,16 +125,16 @@
           class="fadeIn ocho"
           name="username"
           placeholder="Usuario"
-          v-model="v$.username.$model"
+          v-model="$v.username.$model"
           :class="{
-            'is-invalid': v$.username.$error
+            'is-invalid': $v.username.$error
           }"
         />
-        <div class="invalid-feedback" v-if="!v$.entidad.required">
+        <div class="invalid-feedback" v-if="!$v.entidad.required">
           El nombre de usuario es obligatorio
         </div>
-        <div class="invalid-feedback" v-if="!v$.entidad.minLength">
-          El nombre de usuario debe tener mínimo {{ v$.nombres.$params.minLength.min }} letras.
+        <div class="invalid-feedback" v-if="!$v.entidad.minLength">
+          El nombre de usuario debe tener mínimo {{ $v.nombres.$params.minLength.min }} letras.
         </div>
 
         <input
@@ -143,16 +143,16 @@
           class="fadeIn nueve"
           name="password"
           placeholder="Contraseña"
-          v-model="v$.password.$model"
+          v-model="$v.password.$model"
           :class="{
-            'is-invalid': v$.password.$error
+            'is-invalid': $v.password.$error
           }"
         />
-        <div class="invalid-feedback" v-if="!v$.password.required">
+        <div class="invalid-feedback" v-if="!$v.password.required">
           La contraseña es obligatoria
         </div>
-        <div class="invalid-feedback" v-if="!v$.password.minLength">
-          La contraseña debe tener mínimo {{ v$.password.$params.minLength.min }} caracteres.
+        <div class="invalid-feedback" v-if="!$v.password.minLength">
+          La contraseña debe tener mínimo {{ $v.password.$params.minLength.min }} caracteres.
         </div>
 
         <input
@@ -161,12 +161,12 @@
           class="fadeIn diez"
           name="passwordConfirm"
           placeholder="Confirmar Contraseña"
-          v-model="v$.passwordConfirm.$model"
+          v-model="$v.passwordConfirm.$model"
           :class="{
-            'is-invalid': v$.passwordConfirm.$error
+            'is-invalid': $v.passwordConfirm.$error
           }"
         />
-        <div class="invalid-feedback" v-if="!v$.passwordConfirm.sameAsPassword">
+        <div class="invalid-feedback" v-if="!$v.passwordConfirm.sameAsPassword">
           La contraseña y su confirmación no son iguales.
         </div>
 
@@ -192,19 +192,13 @@
 
 <script>
 //import axios from 'axios'
-import useVuelidate from '@vuelidate/core'
-import { required, minLength, email, sameAs } from "@vuelidate/validators";
+import { required, minLength, email, sameAs } from "vuelidate/lib/validators";
 import authService from "../services/auth.service";
 
 export default {
   name: "Register",
   props: {
     msg: String,
-  },
-  setup(){
-    //const v$ = useVuelidate()
-    //return {$v}
-    return{v$:useVuelidate()}
   },
   data: function () {
     return {
@@ -223,12 +217,10 @@ export default {
       submitStatus: null,
     };
   },
-  validations (){
-    return {
+  validations: {
     nombres: {
       required,
-      minLengthValue: minLength(3),
-      //minLength: minLength(3),
+      minLength: minLength(3),
     },
     apellidos: {
       required,
@@ -261,23 +253,15 @@ export default {
     passwordConfirm: {
       sameAsPassword: sameAs('password')
     },
-  }
   },
   methods: {
     submit() {
-      //const $v = useVuelidate(rules,state)
-      //console.log("submit!");
+      console.log("submit!");
 
-      this.v$.$touch();
-      //const isFormCorrect = this.v$.v$alidate();
-      //console.info(this.v$);
-
-      if (this.v$.$invalid) {
-
+      this.$v.$touch();
+      if (this.$v.$invalid) {
         this.submitStatus = "ERROR";
         console.log("ERROR!");
-        console.log(this.v$.nombres);
-        return;
       } else {
         // do your submit logic here
         this.submitStatus = "PENDING";
