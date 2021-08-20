@@ -40,12 +40,11 @@
             'is-invalid': v$.apellidos.$error,
           }"
         />
-        <div class="invalid-feedback" v-if="!v$.apellidos.required">
+        <div class="invalid-feedback" v-if="v$.apellidos.required">
           Los apellidos son obligatorios
         </div>
         <div class="invalid-feedback" v-if="!v$.apellidos.minLength">
-          Los apellidos deben tener minimo
-          {{ v$.nombres.$params.minLength.min }} letras.
+          Los apellidos deben tener minimo {{ v$.apellidos.minLengthValue.$params.min }} letras.
         </div>
 
         <input
@@ -59,10 +58,10 @@
             'is-invalid': v$.correo.$error,
           }"
         />
-         <div class="invalid-feedback" v-if="!v$.correo.required">
+         <div class="invalid-feedback" v-if="v$.correo.required">
           El correo es obligatorio
         </div>
-        <div class="invalid-feedback" v-if="!v$.correo.email">
+        <div class="invalid-feedback" v-if="v$.correo.email">
           El correo deben ser una dirección de correo electronico correcto.
         </div>
 
@@ -77,11 +76,11 @@
             'is-invalid': v$.entidad.$error
           }"
         />
-        <div class="invalid-feedback" v-if="!v$.entidad.required">
+        <div class="invalid-feedback" v-if="v$.entidad.required">
           La entidad es obligatoria
         </div>
         <div class="invalid-feedback" v-if="!v$.entidad.minLength">
-          La apellidos deben tener mínimo {{ v$.entidad.$entidad.minLength.min }} letras.
+          La apellidos deben tener mínimo {{ v$.entidad.minLengthValue.$params.min }} letras.
         </div>
         <input
           type="text"
@@ -94,11 +93,11 @@
             'is-invalid': v$.dependencia.$error
           }"
         />
-        <div class="invalid-feedback" v-if="!v$.dependencia.required">
+        <div class="invalid-feedback" v-if="v$.dependencia.required">
           La dependencia es obligatoria
         </div>
         <div class="invalid-feedback" v-if="!v$.dependencia.minLength">
-          La dependencia debe tener mínimo {{ v$.dependencia.$params.minLength.min }} letras.
+          La dependencia debe tener mínimo {{ v$.dependencia.minLengthValue.$params.min }} letras.
         </div>
 
         <input
@@ -112,11 +111,11 @@
             'is-invalid': v$.extension.$error
           }"
         />
-        <div class="invalid-feedback" v-if="!v$.extension.required">
+        <div class="invalid-feedback" v-if="v$.extension.required">
           La extension es obligatoria
         </div>
         <div class="invalid-feedback" v-if="!v$.extension.minLength">
-          La extension debe tener mínimo {{ v$.extension.$params.minLength.min }} letras.
+          La extension debe tener mínimo {{ v$.extension.minLengthValue.$params.min }} letras.
         </div>
 
         <input
@@ -130,11 +129,11 @@
             'is-invalid': v$.username.$error
           }"
         />
-        <div class="invalid-feedback" v-if="!v$.entidad.required">
+        <div class="invalid-feedback" v-if="v$.entidad.required">
           El nombre de usuario es obligatorio
         </div>
         <div class="invalid-feedback" v-if="!v$.entidad.minLength">
-          El nombre de usuario debe tener mínimo {{ v$.nombres.$params.minLength.min }} letras.
+          El nombre de usuario debe tener mínimo {{ v$.nombres.minLengthValue.$params.min }} letras.
         </div>
 
         <input
@@ -148,11 +147,11 @@
             'is-invalid': v$.password.$error
           }"
         />
-        <div class="invalid-feedback" v-if="!v$.password.required">
+        <div class="invalid-feedback" v-if="v$.password.required">
           La contraseña es obligatoria
         </div>
         <div class="invalid-feedback" v-if="!v$.password.minLength">
-          La contraseña debe tener mínimo {{ v$.password.$params.minLength.min }} caracteres.
+          La contraseña debe tener mínimo {{ v$.password.minLengthValue.$params.min }} caracteres.
         </div>
 
         <input
@@ -166,7 +165,7 @@
             'is-invalid': v$.passwordConfirm.$error
           }"
         />
-        <div class="invalid-feedback" v-if="!v$.passwordConfirm.sameAsPassword">
+        <div class="invalid-feedback" v-if="v$.passwordConfirm.sameAsPassword">
           La contraseña y su confirmación no son iguales.
         </div>
 
@@ -232,7 +231,7 @@ export default {
     },
     apellidos: {
       required,
-      minLength: minLength(3),
+      minLengthValue: minLength(3),
     },
     correo: {
       required,
@@ -240,23 +239,23 @@ export default {
     },
     entidad: {
       required,
-      minLength: minLength(3),
+      minLengthValue: minLength(3),
     },
     dependencia: {
       required,
-      minLength: minLength(3),
+      minLengthValue: minLength(3),
     },
     extension: {
       required,
-      minLength: minLength(3),
+      minLengthValue: minLength(3),
     },
     username: {
       required,
-      minLength: minLength(3),
+      minLengthValue: minLength(3),
     },
     password: {
       required,
-      minLength: minLength(9),
+      minLengthValue: minLength(9),
     },
     passwordConfirm: {
       sameAsPassword: sameAs('password')
@@ -265,12 +264,8 @@ export default {
   },
   methods: {
     submit() {
-      //const $v = useVuelidate(rules,state)
-      //console.log("submit!");
 
       this.v$.$touch();
-      //const isFormCorrect = this.v$.v$alidate();
-      //console.info(this.v$);
 
       if (this.v$.$invalid) {
 

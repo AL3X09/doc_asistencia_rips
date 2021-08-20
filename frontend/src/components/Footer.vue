@@ -6,9 +6,9 @@
   <div class="container">
     <div class="row">
       
-      <div class="col-lg-4 col-md-6">
-        <h1>Asistencia EGI APP</h1>
-        <h3>Dirección de Planeación Sectorial</h3>
+      <div class="col-lg-12 col-md-12">
+        <h4>Asistencia EGI APP</h4>
+        <h5>Dirección de Planeación Sectorial</h5>
         <h6>Desarrollado por: Alexander Cifuentes Sanchez</h6>
       </div>
     </div>
